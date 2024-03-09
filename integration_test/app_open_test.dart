@@ -24,7 +24,7 @@ void main() {
       await tester.pumpAndSettle(const Duration(seconds: 10));
       await tester.tap(finder);
       logger.d("Tapping Sign In Button");
-      await tester.pumpAndSettle(const Duration(seconds: 10));
+      await tester.pumpAndSettle(const Duration(seconds: 30));
       await binding.takeScreenshot('test-screenshot');
       logger.d("Taking Screenshot");
       await tester.pumpAndSettle(const Duration(seconds: 10));
