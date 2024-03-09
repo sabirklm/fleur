@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 part 'register_event.dart';
@@ -11,9 +11,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
   Future<void> _onEmailPasswordRegister(
       EmailPasswordRegisterEvent event, Emitter<RegisterState> emit) async {
-    final email = event.email;
-    final password = event.password;
-    final auth = FirebaseAuth.instance;
+    // final email = event.email;
+    // final password = event.password;
+    // final auth = FirebaseAuth.instance;
     emit(EmailPasswordRegistrationLoading());
 
     try {

@@ -168,6 +168,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         ],
                       ),
                       MaterialButton(
+                        key: const Key("signInButton"),
                         shape: RoundedRectangleBorder(
                           side: BorderSide(
                             color: Colors.purple.shade800,
