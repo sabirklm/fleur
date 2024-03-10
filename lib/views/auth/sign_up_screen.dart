@@ -1,6 +1,5 @@
 import 'package:fleur/bloc/register_bloc.dart';
 import 'package:fleur/bloc/remember_me_bloc.dart';
-import 'package:fleur/fleur_app_bottom_navigation.dart';
 import 'package:fleur/utills/sanckbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -164,6 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     RegisterWithEmailPasswordButton(
                       email: _emailController.text,
                       password: _passwordController.text,
+                      name: _nameController.text,
                     ),
                     const SizedBox(
                       height: 16,
@@ -259,10 +259,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
 class RegisterWithEmailPasswordButton extends StatelessWidget {
   final String email;
   final String password;
+  final String name;
+
   const RegisterWithEmailPasswordButton({
     super.key,
     required this.email,
     required this.password,
+    required this.name,
   });
 
   @override
@@ -289,9 +292,6 @@ class RegisterWithEmailPasswordButton extends StatelessWidget {
                   style: GoogleFonts.sen(color: Colors.white),
                 ),
                 onPressed: () {
-                  // if (email.trim().isEmpty || password.isEmpty) {
-                  //   return;
-                  // }
                   var rememberMe =
                       context.read<RememberMeBloc>().state is RememberMeChecked;
 
@@ -300,13 +300,9 @@ class RegisterWithEmailPasswordButton extends StatelessWidget {
                           email: email,
                           password: password,
                           isRememberMe: rememberMe,
+                          name:name,
                         ),
                       );
-                  SnackbarUtills.showSnackbar(
-                    context: context,
-                    message:
-                        "Email: $email, Password: $password RememberMe: $rememberMe",
-                  );
                 },
               );
             }
@@ -317,16 +313,16 @@ class RegisterWithEmailPasswordButton extends StatelessWidget {
             );
           },
           listener: (context, state) {
-            if (state is EmailPasswordRegistrationSuccessful) {
-              Navigator.of(context).popUntil((route) => route.isFirst);
-              var route = MaterialPageRoute(
-                  builder: (context) => const FleurAppBottomNavigation());
-              Navigator.of(context).pushReplacement(route);
-              SnackbarUtills.showSnackbar(
-                context: context,
-                message: "Registration Successful",
-              );
-            }
+            // if (state is EmailPasswordRegistrationSuccessful) {
+            //   Navigator.of(context).popUntil((route) => route.isFirst);
+            //   var route = MaterialPageRoute(
+            //       builder: (context) => const FleurAppBottomNavigation());
+            //   Navigator.of(context).pushReplacement(route);
+            //   SnackbarUtills.showSnackbar(
+            //     context: context,
+            //     message: "Registration Successful",
+            //   );
+            // }
 
             if (state is EmailPasswordRegistrationFailed) {
               SnackbarUtills.showSnackbar(
