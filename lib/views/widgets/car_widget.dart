@@ -48,9 +48,9 @@ class VehicleWidget extends StatelessWidget {
                   var progress = loadingProgress?.cumulativeBytesLoaded;
                   var total = loadingProgress?.expectedTotalBytes;
                   if (loadingProgress == null) return child;
-                  double opacity = min(1 - ((progress ?? 0) / (total ?? 1)), 1);
+                  // double opacity = min(1 - ((progress ?? 0) / (total ?? 1)), 1);
                   return Container(
-                    color: Colors.grey.withOpacity(opacity),
+                    color: Colors.grey,
                     height: 100,
                     width: width * 0.45,
                   ).animate().shimmer(duration: 1000.ms);
@@ -111,8 +111,7 @@ class VehicleCardType2 extends StatelessWidget {
                     var total = loadingProgress?.expectedTotalBytes;
                     if (loadingProgress == null) return child;
                     return Container(
-                      color: Colors.grey
-                          .withOpacity((progress ?? 0) / (total ?? 1)),
+                      color: Colors.grey,
                       height: 200,
                       width: width * 0.99,
                     ).animate().shimmer(duration: 1000.ms);

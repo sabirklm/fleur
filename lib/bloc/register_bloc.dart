@@ -40,7 +40,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       );
       emit(EmailPasswordRegistrationSuccessful());
       await Future.delayed(const Duration(seconds: 2));
-      throw Exception();
+     
     } on FirebaseAuthException catch (e) {
       emit(EmailPasswordRegistrationFailed(
           "Something wents wrong. ${e.message}"));
