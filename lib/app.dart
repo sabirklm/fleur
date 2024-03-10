@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: GoogleFonts.sen().fontFamily,
         ),
-        home: const AuthScreen(),
+        home: const InitialView(),
         routes: const {
           // '/car-brand': (context) => const CarBrandScreen(),
           // '/car-model': (context) => const CarModelScreen(),

@@ -1,8 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fleur/views/auth/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../fleur_app_bottom_navigation.dart';
+
+class InitialView extends StatelessWidget {
+  const InitialView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final auth = FirebaseAuth.instance.currentUser;
+    return auth == null ? const AuthScreen() : const FleurAppBottomNavigation();
+  }
+}
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
