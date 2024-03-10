@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:fleur/models/vehicle.dart';
 import 'package:fleur/utills/styles.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +43,8 @@ class VehicleWidget extends StatelessWidget {
                 width: width * 0.45,
                 fit: BoxFit.fitWidth,
                 loadingBuilder: (context, child, loadingProgress) {
-                  var progress = loadingProgress?.cumulativeBytesLoaded;
-                  var total = loadingProgress?.expectedTotalBytes;
+                  // var progress = loadingProgress?.cumulativeBytesLoaded;
+                  // var total = loadingProgress?.expectedTotalBytes;
                   if (loadingProgress == null) return child;
                   // double opacity = min(1 - ((progress ?? 0) / (total ?? 1)), 1);
                   return Container(
@@ -107,8 +105,8 @@ class VehicleCardType2 extends StatelessWidget {
                   width: width * 0.99,
                   fit: BoxFit.fitWidth,
                   loadingBuilder: (context, child, loadingProgress) {
-                    var progress = loadingProgress?.cumulativeBytesLoaded;
-                    var total = loadingProgress?.expectedTotalBytes;
+                    // var progress = loadingProgress?.cumulativeBytesLoaded;
+                    // var total = loadingProgress?.expectedTotalBytes;
                     if (loadingProgress == null) return child;
                     return Container(
                       color: Colors.grey,
