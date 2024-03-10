@@ -227,16 +227,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             color: Colors.grey.shade800,
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text(
-                            "Sign In?".toUpperCase(),
-                            style: GoogleFonts.sen(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.purple.shade800,
+                        Flexible(
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              "Sign In?".toUpperCase(),
+                              style: GoogleFonts.sen(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.purple.shade800,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ),

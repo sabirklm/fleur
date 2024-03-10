@@ -157,12 +157,15 @@ class _AuthScreenState extends State<AuthScreen> {
                               ),
                             ),
                           ),
-                          Text(
-                            "Forgot Password?",
-                            style: GoogleFonts.sen(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.purple.shade800,
+                          Flexible(
+                            child: Text(
+                              "Forgot Password?",
+                              style: GoogleFonts.sen(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.purple.shade800,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
                           ),
                         ],
@@ -257,21 +260,24 @@ class _AuthScreenState extends State<AuthScreen> {
                               color: Colors.grey.shade800,
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SignUpScreen(),
+                          Flexible(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SignUpScreen(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                "CREATE NEW ACCOUNT",
+                                style: GoogleFonts.sen(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.purple.shade800,
                                 ),
-                              );
-                            },
-                            child: Text(
-                              "CREATE NEW ACCOUNT",
-                              style: GoogleFonts.sen(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.purple.shade800,
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
