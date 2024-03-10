@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:fleur/services/user_service.dart';
 
 import '../models/user.dart';
@@ -14,6 +15,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     try {
       emit(UserLoading());
       await Future.delayed(const Duration(seconds: 1)); //uwfb677VOD4C0emOa5ph
+      final id=auth.FirebaseAuth.instance.currentUser?.uid;
+      if(id==null){
+        emit(const UserError("User not found"));
+        return;
+      }
       var user = await UserService().getUser("uwfb677VOD4C0emOa5ph-12");
       if (user == null) {
         emit(const UserError("User not found"));
