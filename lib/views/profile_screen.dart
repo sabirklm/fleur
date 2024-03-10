@@ -67,6 +67,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 Expanded(
                                   child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Container(
                                         padding: const EdgeInsets.all(16),
