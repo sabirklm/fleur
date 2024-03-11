@@ -51,16 +51,48 @@ class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
           ),
         ),
         body: TabBarView(
-          children: tabs.map(
-            (String tab) {
-              return Center(
+          children: [
+            ...List.generate(
+              tabs.length - 1,
+              (index) => Center(
                 child: Text(
-                  'Content for $tab',
+                  'Content for ${tabs[index]}',
                   style: GoogleFonts.sen(),
                 ),
-              );
-            },
-          ).toList(),
+              ),
+            ),
+            // ...tabs.map(
+            //   (String tab) {
+            //     return Center(
+            //       child: Text(
+            //         'Content for $tab',
+            //         style: GoogleFonts.sen(),
+            //       ),
+            //     );
+            //   },
+            // ).toList()
+            ListView(
+              children: [
+                if (widget.shortSummaries.image != null)
+                  ...List.generate(
+                    widget.shortSummaries.image!.length,
+                    (index) => Image.network(
+                      widget.shortSummaries.image![index],
+                    ),
+                  ),
+                ListTile(
+                  title: Text(
+                    widget.shortSummaries.name ?? "",
+                    style: GoogleFonts.sen(),
+                  ),
+                  subtitle: Text(
+                    widget.shortSummaries.fuelType ?? "",
+                    style: GoogleFonts.sen(),
+                  ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );

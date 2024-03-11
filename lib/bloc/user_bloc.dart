@@ -14,13 +14,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   _getUser(GetUserEvent event, Emitter<UserState> emit) async {
     try {
       emit(UserLoading());
-      await Future.delayed(const Duration(seconds: 1)); //uwfb677VOD4C0emOa5ph
-      final id=auth.FirebaseAuth.instance.currentUser?.uid;
-      if(id==null){
+      await Future.delayed(const Duration(seconds: 1));
+      final id = auth.FirebaseAuth.instance.currentUser?.uid;
+      if (id == null) {
         emit(const UserError("User not found"));
         return;
       }
-      var user = await UserService().getUser("uwfb677VOD4C0emOa5ph-12");
+      var user = await UserService().getUser(id);
       if (user == null) {
         emit(const UserError("User not found"));
         return;
