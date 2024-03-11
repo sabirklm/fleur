@@ -127,9 +127,64 @@ class FeedCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                          child: Container(
+                            height: 180,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade300,
+                            ),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  onTap: () {},
+                                  leading: const Icon(Icons.report),
+                                  title: Text(
+                                    "Report",
+                                    style: GoogleFonts.sen(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  onTap: () {},
+                                  leading: const Icon(Icons.hide_image),
+                                  title: Text(
+                                    "Hide",
+                                    style: GoogleFonts.sen(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  onTap: () {},
+                                  leading: const Icon(Icons.block),
+                                  title: Text(
+                                    "Unfollow",
+                                    style: GoogleFonts.sen(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                   icon: const Icon(
-                    Icons.more_horiz,
+                    Icons.more_vert,
                   ),
                 ),
               ],

@@ -35,113 +35,87 @@ class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: tabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            '${widget.shortSummaries.name}',
-            style: GoogleFonts.sen(),
-            overflow: TextOverflow.ellipsis,
-          ),
-          bottom: TabBar(
-            tabAlignment: TabAlignment.start,
-            isScrollable: true,
-            tabs: tabs.map((tab) {
-              return Tab(
-                text: tab,
-              );
-            }).toList(),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          '${widget.shortSummaries.name}',
+          style: GoogleFonts.sen(),
+          overflow: TextOverflow.ellipsis,
         ),
-        body: TabBarView(
-          children: [
-            ListView(
+        // bottom: TabBar(
+        //   tabAlignment: TabAlignment.start,
+        //   isScrollable: true,
+        //   tabs: tabs.map((tab) {
+        //     return Tab(
+        //       text: tab,
+        //     );
+        //   }).toList(),
+        // ),
+      ),
+      body: ListView(
+        children: [
+          if (widget.shortSummaries.image != null)
+            ...List.generate(
+              widget.shortSummaries.image!.length,
+              (index) => Image.network(
+                widget.shortSummaries.image![index],
+              ),
+            ),
+          ListTile(
+            title: Text(
+              widget.shortSummaries.name ?? "",
+              style: GoogleFonts.sen(),
+            ),
+            subtitle: Text(
+              widget.shortSummaries.fuelType ?? "",
+              style: GoogleFonts.sen(),
+            ),
+          ),
+          ListTile(
+            title: Text(
+              "",
+              style: GoogleFonts.sen(),
+            ),
+            subtitle: Text(
+              "",
+              style: GoogleFonts.sen(),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: Table(
+              border: TableBorder.all(),
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              columnWidths: const {
+                0: FlexColumnWidth(1),
+                1: FlexColumnWidth(1),
+              },
               children: [
-                if (widget.shortSummaries.image != null)
-                  ...List.generate(
-                    widget.shortSummaries.image!.length,
-                    (index) => Image.network(
-                      widget.shortSummaries.image![index],
-                    ),
-                  ),
-                ListTile(
-                  title: Text(
-                    widget.shortSummaries.name ?? "",
-                    style: GoogleFonts.sen(),
-                  ),
-                  subtitle: Text(
-                    widget.shortSummaries.fuelType ?? "",
-                    style: GoogleFonts.sen(),
-                  ),
-                ),
-                ListTile(
-                  title: Text(
-                    "",
-                    style: GoogleFonts.sen(),
-                  ),
-                  subtitle: Text(
-                    "",
-                    style: GoogleFonts.sen(),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Table(
-                    border: TableBorder.all(),
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                    columnWidths: const {
-                      0: FlexColumnWidth(1),
-                      1: FlexColumnWidth(1),
-                    },
+                ...List.generate(
+                  4,
+                  (rows) => TableRow(
                     children: [
                       ...List.generate(
-                        4,
-                        (rows) => TableRow(
-                          children: [
-                            ...List.generate(
-                              2,
-                              (index) => Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Column ${index + 1}",
-                                  style: GoogleFonts.sen(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
+                        2,
+                        (index) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Column ${index + 1}",
+                            style: GoogleFonts.sen(
+                              fontWeight: FontWeight.bold,
                             ),
-                          ],
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 32),
               ],
             ),
-            ...List.generate(
-              tabs.length - 1,
-              (index) => Center(
-                child: Text(
-                  'Content for ${tabs[index]}',
-                  style: GoogleFonts.sen(),
-                ),
-              ),
-            ),
-            // ...tabs.map(
-            //   (String tab) {
-            //     return Center(
-            //       child: Text(
-            //         'Content for $tab',
-            //         style: GoogleFonts.sen(),
-            //       ),
-            //     );
-            //   },
-            // ).toList()
-          ],
-        ),
+          ),
+          const SizedBox(height: 32),
+        ],
       ),
     );
   }
