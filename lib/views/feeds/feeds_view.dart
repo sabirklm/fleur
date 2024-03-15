@@ -1,3 +1,4 @@
+import 'package:fleur/utills/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,12 +27,102 @@ class FeedView extends StatelessWidget {
         //     ),
         //   ),
         // )
+        Container(
+          padding: const EdgeInsets.all(8),
+          margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: boxShadow,
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Create an annomous post",
+                    style: GoogleFonts.sen(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.post_add,
+                      color: Colors.purple,
+                      size: 30,
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.image,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.video_call,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.edit,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
         ...List.generate(
           3,
           (index) => const FeedCard(),
         ),
         SizedBox(
-          height: 180,
+          height: 220,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              ...List.generate(
+                3,
+                (index) => const ShortsVideoCard(),
+              ),
+            ],
+          ),
+        ),
+        ...List.generate(
+          3,
+          (index) => const FeedCard(),
+        ),
+        SizedBox(
+          height: 220,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              ...List.generate(
+                3,
+                (index) => const ShortsVideoCard(),
+              ),
+            ],
+          ),
+        ),
+        ...List.generate(
+          3,
+          (index) => const FeedCard(),
+        ),
+        SizedBox(
+          height: 220,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
@@ -59,10 +150,18 @@ class ShortsVideoCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
       width: 120,
-      height: 160,
+      height: 180,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        color: Colors.grey,
+        color: Colors.white,
+        boxShadow: boxShadow,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10.0),
+        child: Image.network(
+          "https://www.daidegasforum.com/images1/1217/mercedes-sls-black-series-gif.gif",
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -144,7 +243,9 @@ class FeedCard extends StatelessWidget {
                             child: Column(
                               children: [
                                 ListTile(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
                                   leading: const Icon(Icons.report),
                                   title: Text(
                                     "Report",
@@ -155,7 +256,9 @@ class FeedCard extends StatelessWidget {
                                   ),
                                 ),
                                 ListTile(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
                                   leading: const Icon(Icons.hide_image),
                                   title: Text(
                                     "Hide",
@@ -166,7 +269,9 @@ class FeedCard extends StatelessWidget {
                                   ),
                                 ),
                                 ListTile(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
                                   leading: const Icon(Icons.block),
                                   title: Text(
                                     "Unfollow",

@@ -21,7 +21,6 @@ class GoogleSignInButton extends StatelessWidget {
                   height: 100,
                   width: 100,
                   child: CircularProgressIndicator(
-                    color: Colors.white,
                     strokeWidth: 1.2,
                   ),
                 ),
