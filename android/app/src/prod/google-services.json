@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "346305233623-c0pfl1rapl0nb47tpbr0vrcbd7pld9pj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fleur.app",
+            "certificate_hash": "22529689aff242b5a36470f30f1311b7535f147a"
+          }
+        },
+        {
           "client_id": "346305233623-9j3ol91d4n3unbr048akbe9fmttoj289.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "346305233623-9j3ol91d4n3unbr048akbe9fmttoj289.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "346305233623-t50v60kqllvha2l7u2apredo2erlomck.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fleur.app"
+              }
             }
           ]
         }

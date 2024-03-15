@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fleur/bloc/email_password_login_bloc.dart';
 import 'package:fleur/utills/sanckbar.dart';
 import 'package:fleur/views/auth/sign_up_screen.dart';
+import 'package:fleur/views/auth/widgets/google_sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -251,17 +252,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            child: SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: Image.asset(
-                                "assets/images/google.png",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+                         const  GoogleSignInButton(),
                           const SizedBox(
                             width: 8,
                           ),

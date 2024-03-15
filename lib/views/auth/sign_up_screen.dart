@@ -1,9 +1,12 @@
 import 'package:fleur/bloc/register_bloc.dart';
 import 'package:fleur/bloc/remember_me_bloc.dart';
 import 'package:fleur/utills/sanckbar.dart';
+import 'package:fleur/views/auth/widgets/google_sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../fleur_app_bottom_navigation.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -172,17 +175,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.transparent,
-                          child: SizedBox(
-                            height: 100,
-                            width: 100,
-                            child: Image.asset(
-                              "assets/images/google.png",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                        const GoogleSignInButton(),
+                        // CircleAvatar(
+                        //   backgroundColor: Colors.transparent,
+                        //   child: SizedBox(
+                        //     height: 100,
+                        //     width: 100,
+                        //     child: Image.asset(
+                        //       "assets/images/google.png",
+                        //       fit: BoxFit.cover,
+                        //     ),
+                        //   ),
+                        // ),
                         const SizedBox(
                           width: 8,
                         ),
@@ -300,7 +304,7 @@ class RegisterWithEmailPasswordButton extends StatelessWidget {
                           email: email,
                           password: password,
                           isRememberMe: rememberMe,
-                          name:name,
+                          name: name,
                         ),
                       );
                 },
@@ -313,16 +317,16 @@ class RegisterWithEmailPasswordButton extends StatelessWidget {
             );
           },
           listener: (context, state) {
-            // if (state is EmailPasswordRegistrationSuccessful) {
-            //   Navigator.of(context).popUntil((route) => route.isFirst);
-            //   var route = MaterialPageRoute(
-            //       builder: (context) => const FleurAppBottomNavigation());
-            //   Navigator.of(context).pushReplacement(route);
-            //   SnackbarUtills.showSnackbar(
-            //     context: context,
-            //     message: "Registration Successful",
-            //   );
-            // }
+            if (state is EmailPasswordRegistrationSuccessful) {
+              Navigator.of(context).popUntil((route) => route.isFirst);
+              var route = MaterialPageRoute(
+                  builder: (context) => const FleurAppBottomNavigation());
+              Navigator.of(context).pushReplacement(route);
+              SnackbarUtills.showSnackbar(
+                context: context,
+                message: "Registration Successful",
+              );
+            }
 
             if (state is EmailPasswordRegistrationFailed) {
               SnackbarUtills.showSnackbar(

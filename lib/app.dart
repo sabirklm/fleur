@@ -1,4 +1,5 @@
 import 'package:fleur/bloc/email_password_login_bloc.dart';
+import 'package:fleur/bloc/google_auth_bloc.dart';
 import 'package:fleur/bloc/home_bloc.dart';
 import 'package:fleur/bloc/register_bloc.dart';
 import 'package:fleur/bloc/remember_me_bloc.dart';
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => EmailPasswordLoginBloc(),
+        ),
+        BlocProvider(
+          create: (_) => GoogleAuthBloc(),
         ),
       ],
       child: MaterialApp(
