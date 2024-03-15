@@ -20,18 +20,27 @@ class GoogleSignInButton extends StatelessWidget {
                 child: SizedBox(
                   height: 100,
                   width: 100,
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 1.2,
+                  ),
                 ),
               );
             }
-            return CircleAvatar(
-              backgroundColor: Colors.transparent,
-              child: SizedBox(
-                height: 100,
-                width: 100,
-                child: Image.asset(
-                  "assets/images/google.png",
-                  fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                context.read<GoogleAuthBloc>().add(SignInWithGoogle());
+              },
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                
+                child: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: Image.asset(
+                    "assets/images/google.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             );
@@ -45,6 +54,12 @@ class GoogleSignInButton extends StatelessWidget {
               SnackbarUtills.showSnackbar(
                 context: context,
                 message: "Registration Successful",
+              );
+            }
+            if (state is GoogleAuthFailure) {
+              SnackbarUtills.showSnackbar(
+                context: context,
+                message: state.message,
               );
             }
           },
