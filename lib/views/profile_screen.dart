@@ -169,7 +169,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ...List.generate(
             profileItems.length,
             (index) => ListTile(
-              onTap: () {},
+              onTap: () {
+                SnackbarUtills.showSnackbar(
+                    context: context, message: "Comming soon.");
+              },
               leading: Icon(profileItems[index].iconData ?? Icons.error),
               title: Text(
                 profileItems[index].name ?? "",
