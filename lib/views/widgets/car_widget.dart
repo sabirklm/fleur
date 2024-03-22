@@ -207,9 +207,10 @@ class VehicleCardType3 extends StatelessWidget {
                 Text(
                   "${vehicle.fuelType}",
                   style: GoogleFonts.sen(
-                      fontSize: 16,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             )

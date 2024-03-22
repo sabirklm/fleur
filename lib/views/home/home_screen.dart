@@ -1,6 +1,7 @@
 import 'package:fleur/bloc/home_bloc.dart';
 import 'package:fleur/models/home_view_model.dart';
 import 'package:fleur/models/vehicle.dart';
+import 'package:fleur/views/widgets/car_brands_widget.dart';
 import 'package:fleur/views/widgets/vehicles_horizontal_card_view.dart';
 import 'package:fleur/views/widgets/vehicles_vertical_column_card_view.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     // var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -115,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTapVehicle: (p0) {
                               var summaries =
                                   VehicleShortSummaries.fromJson(p0.toJson());
-                         
+
                               _vehicleDetailsBloc.add(
                                 GoToVehicleDetails(
                                     context: context, summary: summaries),
@@ -160,6 +162,44 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
+              Center(
+                child: Wrap(
+                  children: [
+                    ...List.generate(
+                      4,
+                      (index) => Container(
+                        padding: const EdgeInsets.all(16),
+                        margin: const EdgeInsets.all(8),
+                        width: (width / 2 - 16).abs(),
+                        height: (width / 2 - 16).abs(),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: Colors.pink.shade800,
+                        ),
+                        child: Stack(
+                          children: [
+                            Image.asset(
+                              "assets/images/2254397.webp",
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Comming Soon..",
+                                style: GoogleFonts.sen(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              const VehicleBrandsWidget(),
             ],
           ),
         ),

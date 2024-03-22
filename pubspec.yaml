@@ -1,5 +1,5 @@
 name: fleur
-description: "A new Flutter project."
+description: "A new journey."
 publish_to: 'none'
 version: 1.0.0+8
 
@@ -43,7 +43,8 @@ dev_dependencies:
 flutter_icons:
   ios: true
   android: true
-  image_path: "assets/eHtks9Wr.jpeg"
+  image_path: "assets/images/2254397.webp"
+#flutter pub run flutter_launcher_icons
 
 
 
