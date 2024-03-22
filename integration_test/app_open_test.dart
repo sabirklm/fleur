@@ -29,36 +29,20 @@ void main() {
       logger.d("Taking Screenshot");
       await tester.pumpAndSettle(const Duration(seconds: 10));
 
-      /**BottomNavigationBarItem(
-             Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-             Icon(Icons.feed),
-            label: 'Feeds',
-          ),
-          BottomNavigationBarItem(
-             Icon(Icons.bike_scooter),
-            label: 'Service',
-          ),
-          BottomNavigationBarItem(
-             Icon(Icons.person),
-            label: 'Profile',
-          ), */
       var homeIcon = find.byIcon(Icons.home);
-      var feedIcon = find.byIcon(Icons.feed);
-      var serviceIcon = find.byIcon(Icons.bike_scooter);
-      var profileIcon = find.byIcon(Icons.person);
       await tester.pumpAndSettle(const Duration(seconds: 10));
       await tester.tap(homeIcon);
       await binding.takeScreenshot('test-screenshot');
+      var feedIcon = find.byIcon(Icons.feed);
       await tester.pumpAndSettle(const Duration(seconds: 10));
       await tester.tap(feedIcon);
       await binding.takeScreenshot('test-screenshot');
+      var serviceIcon = find.byIcon(Icons.bike_scooter);
       await tester.pumpAndSettle(const Duration(seconds: 10));
       await tester.tap(serviceIcon);
       await tester.pumpAndSettle(const Duration(seconds: 10));
       await binding.takeScreenshot('test-screenshot');
+      var profileIcon = find.byIcon(Icons.person);
       await tester.tap(profileIcon);
       await tester.pumpAndSettle(const Duration(seconds: 10));
       await binding.takeScreenshot('test-screenshot');
