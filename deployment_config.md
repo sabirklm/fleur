@@ -36,5 +36,13 @@ flutterfire configure \
 
   flutter pub run flutter_launcher_icons
 
+## android/key.properties
+
+storePassword=delving@smccz
+keyPassword=delving@smccz
+keyAlias=upload
+storeFile=../app/src/upload-keystore.jks
+
+
 
 
