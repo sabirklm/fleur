@@ -18,6 +18,7 @@ class Vehicle {
   List<String>? image;
   String? createdAt;
   String? updatedAt;
+  Map<String, String> specification;
 
   String? desc;
 
@@ -31,6 +32,7 @@ class Vehicle {
     this.createdAt,
     this.updatedAt,
     this.desc,
+    this.specification = const {},
   });
 
   factory Vehicle.fromJson(Map<String, dynamic> json) =>
@@ -99,7 +101,6 @@ class VehicleFullSummaries {
 //https://www.desktopbackground.org/download/1280x960/2011/11/08/293860_high-quality-car-pictures-1955-alfa-romeo-1900c-super-car_1920x1080_h.jpg
 var vehicle = <Vehicle>[
   // generate some real data
-
 
   Vehicle(
     id: "1",

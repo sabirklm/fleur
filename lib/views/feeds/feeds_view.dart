@@ -1,5 +1,9 @@
+import 'package:fleur/utills/styles.dart';
+import 'package:fleur/views/widgets/short_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../shorts/shorts_list_screen.dart';
 
 class FeedView extends StatelessWidget {
   const FeedView({super.key});
@@ -26,18 +30,108 @@ class FeedView extends StatelessWidget {
         //     ),
         //   ),
         // )
+        Container(
+          padding: const EdgeInsets.all(8),
+          margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: boxShadow,
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Create an annomous post",
+                    style: GoogleFonts.sen(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.post_add,
+                      color: Colors.purple,
+                      size: 30,
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.image,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.video_call,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.edit,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
         ...List.generate(
           3,
           (index) => const FeedCard(),
         ),
         SizedBox(
-          height: 180,
+          height: 220,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
               ...List.generate(
                 3,
-                (index) => const ShortsVideoCard(),
+                (index) => const ShortsVideopreviewCard(),
+              ),
+            ],
+          ),
+        ),
+        ...List.generate(
+          3,
+          (index) => const FeedCard(),
+        ),
+        SizedBox(
+          height: 220,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              ...List.generate(
+                3,
+                (index) => const ShortsVideopreviewCard(),
+              ),
+            ],
+          ),
+        ),
+        ...List.generate(
+          3,
+          (index) => const FeedCard(),
+        ),
+        SizedBox(
+          height: 220,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              ...List.generate(
+                3,
+                (index) => const ShortsVideopreviewCard(),
               ),
             ],
           ),
@@ -51,18 +145,36 @@ class FeedView extends StatelessWidget {
   }
 }
 
-class ShortsVideoCard extends StatelessWidget {
-  const ShortsVideoCard({super.key});
+class ShortsVideopreviewCard extends StatelessWidget {
+  const ShortsVideopreviewCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-      width: 120,
-      height: 160,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.grey,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ShortlistScreen(),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 16.0),
+        width: 120,
+        height: 180,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color: Colors.white,
+          boxShadow: boxShadow,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Image.network(
+            "https://www.daidegasforum.com/images1/1217/mercedes-sls-black-series-gif.gif",
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }
@@ -76,7 +188,7 @@ class FeedCard extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(0.0),
@@ -127,9 +239,70 @@ class FeedCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20.0),
+                            topRight: Radius.circular(20.0),
+                          ),
+                          child: Container(
+                            height: 180,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade300,
+                            ),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  leading: const Icon(Icons.report),
+                                  title: Text(
+                                    "Report",
+                                    style: GoogleFonts.sen(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  leading: const Icon(Icons.hide_image),
+                                  title: Text(
+                                    "Hide",
+                                    style: GoogleFonts.sen(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  leading: const Icon(Icons.block),
+                                  title: Text(
+                                    "Unfollow",
+                                    style: GoogleFonts.sen(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                   icon: const Icon(
-                    Icons.more_horiz,
+                    Icons.more_vert,
                   ),
                 ),
               ],

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../models/menu_item.dart';
 import '../utills/styles.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -32,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: ListView(
         children: [
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.only(left: 16, right: 16),
             // margin: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -101,61 +102,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ],
                             ),
-                            // const SizedBox(height: 16),
-                            // ClipRRect(
-                            //   borderRadius: BorderRadius.circular(8),
-                            //   child: TextFormField(
-                            //     keyboardType: TextInputType.text,
-                            //     textCapitalization:
-                            //         TextCapitalization.sentences,
-                            //     controller: _nameController,
-                            //     decoration: InputDecoration(
-                            //       border: InputBorder.none,
-                            //       labelText: "Name",
-                            //       hintText: "Please enter your name",
-                            //       labelStyle: GoogleFonts.sen(
-                            //         fontSize: 16,
-                            //       ),
-                            //       hintStyle: GoogleFonts.sen(
-                            //         fontSize: 16,
-                            //       ),
-                            //       filled: true,
-                            //       isDense: true,
-                            //       prefixIcon: const Icon(
-                            //         Icons.person,
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
-                            // const SizedBox(
-                            //   height: 8,
-                            // ),
-                            // ClipRRect(
-                            //   borderRadius: BorderRadius.circular(8),
-                            //   child: TextFormField(
-                            //     keyboardType: TextInputType.text,
-                            //     textCapitalization:
-                            //         TextCapitalization.sentences,
-                            //     readOnly: true,
-                            //     controller: _emailController,
-                            //     decoration: InputDecoration(
-                            //       border: InputBorder.none,
-                            //       labelText: "Email",
-                            //       hintText: "Please enter your email",
-                            //       labelStyle: GoogleFonts.sen(
-                            //         fontSize: 16,
-                            //       ),
-                            //       hintStyle: GoogleFonts.sen(
-                            //         fontSize: 16,
-                            //       ),
-                            //       filled: true,
-                            //       isDense: true,
-                            //       prefixIcon: const Icon(
-                            //         Icons.email,
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
                           ],
                         );
                       }
@@ -217,77 +163,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                   ),
                 ),
-                const SizedBox(height: 16),
               ],
             ),
           ),
-          ListTile(
-            onTap: () {},
-            leading: const Icon(Icons.car_repair),
-            title: Text(
-              "My Vehicles",
-              style: GoogleFonts.sen(
-                fontSize: 16,
+          ...List.generate(
+            profileItems.length,
+            (index) => ListTile(
+              onTap: () {
+                SnackbarUtills.showSnackbar(
+                    context: context, message: "Comming soon.");
+              },
+              leading: Icon(profileItems[index].iconData ?? Icons.error),
+              title: Text(
+                profileItems[index].name ?? "",
+                style: GoogleFonts.sen(
+                  fontSize: 16,
+                ),
               ),
             ),
-            trailing: const Icon(Icons.arrow_forward_rounded),
           ),
-          ListTile(
-            onTap: () {},
-            leading: const Icon(Icons.car_repair),
-            title: Text(
-              "My Vehicles",
-              style: GoogleFonts.sen(
-                fontSize: 16,
+          Column(
+            children: [
+              MaterialButton(
+                onPressed: () {
+                  //TODO:
+                },
+                child: Text(
+                  "Log Out",
+                  style: GoogleFonts.sen(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
-            ),
-            trailing: const Icon(Icons.arrow_forward_rounded),
-          ),
-          ListTile(
-            onTap: () {},
-            leading: const Icon(Icons.car_repair),
-            title: Text(
-              "My Vehicles",
-              style: GoogleFonts.sen(
-                fontSize: 16,
-              ),
-            ),
-            trailing: const Icon(Icons.arrow_forward_rounded),
-          ),
-          ListTile(
-            onTap: () {},
-            leading: const Icon(Icons.car_repair),
-            title: Text(
-              "My Vehicles",
-              style: GoogleFonts.sen(
-                fontSize: 16,
-              ),
-            ),
-            trailing: const Icon(Icons.arrow_forward_rounded),
-          ),
-          ListTile(
-            onTap: () {},
-            leading: const Icon(Icons.settings),
-            title: Text(
-              "Profile Settings",
-              style: GoogleFonts.sen(
-                fontSize: 16,
-              ),
-            ),
-            trailing: const Icon(Icons.arrow_forward_rounded),
-          ),
-          // logout rounded button
-          MaterialButton(
-            onPressed: () {
-              //TODO:
-            },
-            child: Text(
-              "Log Out",
-              style: GoogleFonts.sen(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+              const SizedBox(height: 16)
+            ],
           ),
         ],
       ),

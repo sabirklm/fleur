@@ -49,7 +49,7 @@ class VehiclesHorizontalCardView extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                   child: Text(
-                    "See All".toUpperCase(),
+                    "More".toUpperCase(),
                     style: GoogleFonts.sen(
                       fontSize: 16,
                       color: Colors.white,
@@ -67,7 +67,6 @@ class VehiclesHorizontalCardView extends StatelessWidget {
                   vehicle.length,
                   (index) => GestureDetector(
                     onTap: () {
-                      //methods that will vehicle parameter
                       onTapVehicle(
                         vehicle[index],
                       );

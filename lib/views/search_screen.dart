@@ -12,8 +12,9 @@ class SearchScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(4),
               child: TextFormField(
+                autofocus: true,
                 keyboardType: TextInputType.text,
                 textCapitalization: TextCapitalization.sentences,
                 decoration: InputDecoration(

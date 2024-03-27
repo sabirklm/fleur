@@ -1,6 +1,20 @@
 /* 
 
+Price
+	Rs. 11.57 Lakh onwards
+Mileage
+	15.31 to 16.92 kmpl
+Engine
+	1498 cc
+Fuel Type
+	Petrol
+Transmission
+	Manual & Automatic
+Seating Capacity
+	5 Seater
 
+
+  
 await UserService().addUser(
         User(
           id: "uwfb677VOD4C0emOa5ph-12",

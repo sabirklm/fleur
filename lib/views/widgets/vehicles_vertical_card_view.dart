@@ -7,7 +7,7 @@ import 'car_widget.dart';
 class VehiclesVerticalCardView extends StatelessWidget {
   final String heading;
   final List<VehicleShortSummaries> vehicle;
-  final dynamic Function(Vehicle) onTapVehicle;
+  final dynamic Function(VehicleShortSummaries) onTapVehicle;
 
   const VehiclesVerticalCardView({
     super.key,
@@ -41,7 +41,7 @@ class VehiclesVerticalCardView extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Text(
-                  "See All".toUpperCase(),
+                  "More".toUpperCase(),
                   style: GoogleFonts.sen(
                     fontSize: 16,
                     color: Colors.white,
@@ -53,8 +53,15 @@ class VehiclesVerticalCardView extends StatelessWidget {
         ),
         ...List.generate(
           vehicle.length,
-          (index) => VehicleCardType3(
-            vehicle: vehicle[index],
+          (index) => GestureDetector(
+             onTap: () {
+                      onTapVehicle(
+                        vehicle[index],
+                      );
+                    },
+            child: VehicleCardType3(
+              vehicle: vehicle[index],
+            ),
           ),
         ),
       ],

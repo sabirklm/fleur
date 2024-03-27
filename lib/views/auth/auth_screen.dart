@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fleur/bloc/email_password_login_bloc.dart';
+import 'package:fleur/utills/sanckbar.dart';
 import 'package:fleur/views/auth/sign_up_screen.dart';
+import 'package:fleur/views/auth/widgets/google_sign_in_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../fleur_app_bottom_navigation.dart';
@@ -23,6 +27,9 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -100,6 +107,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         borderRadius: BorderRadius.circular(8),
                         child: TextFormField(
                           keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             labelText: "Email",
@@ -125,6 +133,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         borderRadius: BorderRadius.circular(8),
                         child: TextFormField(
                           obscureText: true,
+                          controller: _passwordController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             labelText: "Password",
@@ -181,29 +190,56 @@ class _AuthScreenState extends State<AuthScreen> {
                           ),
                         ],
                       ),
-                      MaterialButton(
-                        key: const Key("signInButton"),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: Colors.purple.shade800,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        elevation: 0.0,
-                        minWidth: width,
-                        color: Colors.purple.shade800,
-                        height: 48,
-                        child: Text(
-                          "Sign In",
-                          style: GoogleFonts.sen(color: Colors.white),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const FleurAppBottomNavigation(),
+                      BlocConsumer<EmailPasswordLoginBloc,
+                          EmailPasswordLoginState>(
+                        builder: (context, state) {
+                          if (state is EmailPasswordLoginLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 1.2,
+                              ),
+                            );
+                          }
+                          return MaterialButton(
+                            key: const Key("signInButton"),
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: Colors.purple.shade800,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
                             ),
+                            elevation: 0.0,
+                            minWidth: width,
+                            color: Colors.purple.shade800,
+                            height: 48,
+                            child: Text(
+                              "Sign In",
+                              style: GoogleFonts.sen(color: Colors.white),
+                            ),
+                            onPressed: () {
+                              context.read<EmailPasswordLoginBloc>().add(
+                                    EmailPasswordLoginEventLogin(
+                                      email: _emailController.text,
+                                      password: _passwordController.text,
+                                    ),
+                                  );
+                            },
                           );
+                        },
+                        listener: (context, state) {
+                          if (state is EmailPasswordLoginFailure) {
+                            SnackbarUtills.showSnackbar(
+                                context: context, message: state.message);
+                            return;
+                          }
+                          if (state is EmailPasswordLoginSuccess) {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const FleurAppBottomNavigation(),
+                              ),
+                            );
+                          }
                         },
                       ),
                       const SizedBox(
@@ -216,17 +252,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            child: SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: Image.asset(
-                                "assets/images/google.png",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+                         const  GoogleSignInButton(),
                           const SizedBox(
                             width: 8,
                           ),

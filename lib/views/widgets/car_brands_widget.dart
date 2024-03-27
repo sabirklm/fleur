@@ -67,6 +67,9 @@ class VehicleBrandsWidget extends StatelessWidget {
             ),
           ),
         ),
+        const SizedBox(
+          height: 16,
+        ),
       ],
     );
   }
