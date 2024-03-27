@@ -21,7 +21,7 @@ class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
     "Tab 4",
     "Tab 5",
     "Tab 6"
-  ]; 
+  ];
 
   @override
   void didChangeDependencies() {
@@ -57,9 +57,16 @@ class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
           if (widget.shortSummaries.image != null)
             ...List.generate(
               widget.shortSummaries.image!.length,
-              (index) => Image.network(
-                widget.shortSummaries.image![index],
-              ),
+              (index) {
+                if (index == 0) {
+                  return Image.network(
+                    widget.shortSummaries.image![index],
+                  );
+                }
+                return Image.network(
+                  widget.shortSummaries.image![index],
+                );
+              },
             ),
           ListTile(
             title: Text(

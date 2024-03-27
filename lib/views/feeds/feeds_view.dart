@@ -1,6 +1,9 @@
 import 'package:fleur/utills/styles.dart';
+import 'package:fleur/views/widgets/short_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../shorts/shorts_list_screen.dart';
 
 class FeedView extends StatelessWidget {
   const FeedView({super.key});
@@ -29,7 +32,7 @@ class FeedView extends StatelessWidget {
         // )
         Container(
           padding: const EdgeInsets.all(8),
-          margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10.0),
@@ -96,7 +99,7 @@ class FeedView extends StatelessWidget {
             children: [
               ...List.generate(
                 3,
-                (index) => const ShortsVideoCard(),
+                (index) => const ShortsVideopreviewCard(),
               ),
             ],
           ),
@@ -112,7 +115,7 @@ class FeedView extends StatelessWidget {
             children: [
               ...List.generate(
                 3,
-                (index) => const ShortsVideoCard(),
+                (index) => const ShortsVideopreviewCard(),
               ),
             ],
           ),
@@ -128,7 +131,7 @@ class FeedView extends StatelessWidget {
             children: [
               ...List.generate(
                 3,
-                (index) => const ShortsVideoCard(),
+                (index) => const ShortsVideopreviewCard(),
               ),
             ],
           ),
@@ -142,25 +145,35 @@ class FeedView extends StatelessWidget {
   }
 }
 
-class ShortsVideoCard extends StatelessWidget {
-  const ShortsVideoCard({super.key});
+class ShortsVideopreviewCard extends StatelessWidget {
+  const ShortsVideopreviewCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-      width: 120,
-      height: 180,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.white,
-        boxShadow: boxShadow,
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
-        child: Image.network(
-          "https://www.daidegasforum.com/images1/1217/mercedes-sls-black-series-gif.gif",
-          fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ShortlistScreen(),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 16.0),
+        width: 120,
+        height: 180,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          color: Colors.white,
+          boxShadow: boxShadow,
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Image.network(
+            "https://www.daidegasforum.com/images1/1217/mercedes-sls-black-series-gif.gif",
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -175,7 +188,7 @@ class FeedCard extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(0.0),

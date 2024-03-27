@@ -42,7 +42,7 @@ class VehiclesVerticalColumnCardView extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 child: Text(
-                  "See All".toUpperCase(),
+                  "More".toUpperCase(),
                   style: GoogleFonts.sen(
                     fontSize: 16,
                     color: Colors.white,
@@ -54,8 +54,15 @@ class VehiclesVerticalColumnCardView extends StatelessWidget {
         ),
         ...List.generate(
           vehicle.length,
-          (index) => VehicleCardType2(
-            vehicle: vehicle[index],
+          (index) => GestureDetector(
+            onTap: () {
+              onTapVehicle(
+                vehicle[index],
+              );
+            },
+            child: VehicleCardType2(
+              vehicle: vehicle[index],
+            ),
           ),
         ),
       ],

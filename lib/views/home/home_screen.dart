@@ -1,6 +1,5 @@
 import 'package:fleur/bloc/home_bloc.dart';
 import 'package:fleur/models/home_view_model.dart';
-import 'package:fleur/models/vehicle.dart';
 import 'package:fleur/views/widgets/car_brands_widget.dart';
 import 'package:fleur/views/widgets/vehicles_horizontal_card_view.dart';
 import 'package:fleur/views/widgets/vehicles_vertical_column_card_view.dart';
@@ -37,21 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SearchScreen(),
-                ),
-              );
-            },
-            icon: const Icon(
-              Icons.search_sharp,
-            ),
-          ),
-        ],
       ),
       body: Center(
         child: RefreshIndicator(
@@ -61,6 +45,42 @@ class _HomeScreenState extends State<HomeScreen> {
           child: ListView(
             shrinkWrap: true,
             children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    textCapitalization: TextCapitalization.sentences,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SearchScreen(),
+                        ),
+                      );
+                    },
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      // labelText: "Name",
+                      hintText: "Search",
+                      labelStyle: GoogleFonts.sen(
+                        fontSize: 16,
+                      ),
+                      hintStyle: GoogleFonts.sen(
+                        fontSize: 16,
+                      ),
+                      filled: true,
+                      isDense: true,
+                      suffixIcon: const Icon(
+                        Icons.search,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
               BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
                   if (state is HomeInitial) {
@@ -86,12 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               vehicle: data[index].vehicles ?? [],
                               heading: data[index].title ?? "",
                               onTapVehicle: (p0) {
-                                var summaries =
-                                    VehicleShortSummaries.fromJson(p0.toJson());
-
                                 _vehicleDetailsBloc.add(
                                   GoToVehicleDetails(
-                                      context: context, summary: summaries),
+                                      context: context, summary: p0),
                                 );
                               },
                             );
@@ -101,12 +118,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               vehicle: data[index].vehicles ?? [],
                               heading: data[index].title ?? "",
                               onTapVehicle: (p0) {
-                                var summaries =
-                                    VehicleShortSummaries.fromJson(p0.toJson());
-
                                 _vehicleDetailsBloc.add(
                                   GoToVehicleDetails(
-                                      context: context, summary: summaries),
+                                      context: context, summary: p0),
                                 );
                               },
                             );
@@ -115,35 +129,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             vehicle: data[index].vehicles ?? [],
                             heading: data[index].title ?? "",
                             onTapVehicle: (p0) {
-                              var summaries =
-                                  VehicleShortSummaries.fromJson(p0.toJson());
-
                               _vehicleDetailsBloc.add(
                                 GoToVehicleDetails(
-                                    context: context, summary: summaries),
+                                    context: context, summary: p0),
                               );
                             },
                           );
                         }),
-
-                        // ...data.keys
-                        //     .map(
-                        //       (key) => VehiclesVerticalCardView(
-                        //         vehicle: data[key] ?? [],
-                        //         heading: key,
-                        //         onTapVehicle: (p0) {
-                        //           var summaries =
-                        //               VehicleShortSummaries.fromJson(
-                        //                   p0.toJson());
-
-                        //           _vehicleDetailsBloc.add(
-                        //             GoToVehicleDetails(
-                        //                 context: context, summary: summaries),
-                        //           );
-                        //         },
-                        //       ),
-                        //     )
-                        //     .toList(),
                       ],
                     );
                   }
