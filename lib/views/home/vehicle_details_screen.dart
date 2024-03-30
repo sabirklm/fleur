@@ -119,7 +119,7 @@ class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(8),
             child: Table(
               border: TableBorder.all(
                 color: Colors.grey,

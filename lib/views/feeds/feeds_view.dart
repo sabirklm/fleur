@@ -10,137 +10,194 @@ class FeedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        // Padding(
-        //   padding: const EdgeInsets.all(32.0),
-        //   child: Image.asset(
-        //     "assets/images/nodata.png",
-        //   ),
-        // ),
-        // const SizedBox(
-        //   height: 20,
-        // ),
-        // Center(
-        //   child: Text(
-        //     "No data available",
-        //     style: GoogleFonts.sen(
-        //       fontSize: 20,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        // )
-        Container(
-          padding: const EdgeInsets.all(8),
-          margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10.0),
-            boxShadow: boxShadow,
-          ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text(
-                    "Create an annomous post",
-                    style: GoogleFonts.sen(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+    var width = MediaQuery.of(context).size.width;
+    return Scaffold(
+      body: ListView(
+        children: [
+          const SizedBox(height: 8),
+          SizedBox(
+            height: 320,
+            width: 120,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                ...List.generate(
+                  3,
+                  (index) => ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                        left: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: boxShadow,
+                      ),
+                      height: 320,
+                      width: 260,
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              "assets/images/electric.png",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.5),
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(16),
+                                  bottomRight: Radius.circular(16),
+                                ),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    ...List.generate(
+                                      3,
+                                      (index) =>
+                                          Colors.black.withOpacity(index / 3),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              child: Text(
+                                "Electric vehicles are future? Know more on elecric vehicles here",
+                                style: GoogleFonts.sen(
+                                  fontSize: 22,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.post_add,
-                      color: Colors.purple,
-                      size: 30,
-                    ),
-                  ),
-                ],
-              ),
-              const Divider(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.image,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.video_call,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.edit,
-                    ),
-                  ),
-                ],
-              )
-            ],
+                ),
+              ],
+            ),
           ),
-        ),
-        ...List.generate(
-          3,
-          (index) => const FeedCard(),
-        ),
-        SizedBox(
-          height: 220,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              ...List.generate(
-                3,
-                (index) => const ShortsVideopreviewCard(),
-              ),
-            ],
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.all(8),
+            margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10.0),
+              boxShadow: boxShadow,
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "Create an annomous post",
+                      style: GoogleFonts.sen(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.post_add,
+                        color: Colors.purple,
+                        size: 30,
+                      ),
+                    ),
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.image,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.video_call,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.edit,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
-        ...List.generate(
-          3,
-          (index) => const FeedCard(),
-        ),
-        SizedBox(
-          height: 220,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              ...List.generate(
-                3,
-                (index) => const ShortsVideopreviewCard(),
-              ),
-            ],
+          ...List.generate(
+            3,
+            (index) => const FeedCard(),
           ),
-        ),
-        ...List.generate(
-          3,
-          (index) => const FeedCard(),
-        ),
-        SizedBox(
-          height: 220,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              ...List.generate(
-                3,
-                (index) => const ShortsVideopreviewCard(),
-              ),
-            ],
+          SizedBox(
+            height: 220,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                ...List.generate(
+                  3,
+                  (index) => const ShortsVideopreviewCard(),
+                ),
+              ],
+            ),
           ),
-        ),
-        ...List.generate(
-          3,
-          (index) => const FeedCard(),
-        ),
-      ],
+          ...List.generate(
+            3,
+            (index) => const FeedCard(),
+          ),
+          SizedBox(
+            height: 220,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                ...List.generate(
+                  3,
+                  (index) => const ShortsVideopreviewCard(),
+                ),
+              ],
+            ),
+          ),
+          ...List.generate(
+            3,
+            (index) => const FeedCard(),
+          ),
+          SizedBox(
+            height: 220,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                ...List.generate(
+                  3,
+                  (index) => const ShortsVideopreviewCard(),
+                ),
+              ],
+            ),
+          ),
+          ...List.generate(
+            3,
+            (index) => const FeedCard(),
+          ),
+        ],
+      ),
     );
   }
 }

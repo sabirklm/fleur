@@ -4,6 +4,7 @@ import 'package:fleur/utills/sanckbar.dart';
 import 'package:fleur/views/auth/sign_up_screen.dart';
 import 'package:fleur/views/auth/widgets/google_sign_in_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +16,54 @@ class InitialView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final auth = FirebaseAuth.instance.currentUser;
-    return auth == null ? const AuthScreen() : const FleurAppBottomNavigation();
+    return FutureBuilder(
+      future: Future.delayed(const Duration(seconds: 1)),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SplashScreen();
+        }
+        return auth == null
+            ? const AuthScreen()
+            : const FleurAppBottomNavigation();
+      },
+    );
+  }
+}
+
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.bike_scooter_outlined,
+              color: Colors.white,
+            ).animate().moveX(
+                  begin: 0,
+                  end: width * 2,
+                  duration: const Duration(seconds: 16),
+                ),
+            const SizedBox(height: 16),
+            Text(
+              "Welcome",
+              style: GoogleFonts.sen(
+                fontSize: 18,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -252,7 +300,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                         const  GoogleSignInButton(),
+                          const GoogleSignInButton(),
                           const SizedBox(
                             width: 8,
                           ),
