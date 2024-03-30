@@ -2,7 +2,7 @@ import 'package:fleur/bloc/home_bloc.dart';
 import 'package:fleur/bloc/service_center_bloc.dart';
 import 'package:fleur/bloc/user_bloc.dart';
 import 'package:fleur/views/feeds/feeds_view.dart';
-import 'package:fleur/views/profile_screen.dart';
+import 'package:fleur/views/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

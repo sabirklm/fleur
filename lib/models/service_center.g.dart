@@ -23,10 +23,11 @@ ServiceCenter _$ServiceCenterFromJson(Map<String, dynamic> json) =>
       images:
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
       description: json['description'] as String?,
-    );
+    )..id = json['id'] as String?;
 
 Map<String, dynamic> _$ServiceCenterToJson(ServiceCenter instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'vehicleType': instance.vehicleType,
       'address': instance.address,

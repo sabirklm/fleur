@@ -62,5 +62,9 @@ List<MenuItem> profileItems = [
     name: "About Us",
     iconData: Icons.info,
     type: "about_us",
+  ),MenuItem(
+    name: "Licenses",
+    iconData: Icons.pages,
+    type: "licenses",
   ),
 ];

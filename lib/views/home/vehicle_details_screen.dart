@@ -2,6 +2,39 @@ import 'package:fleur/models/vehicle.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+var specification = <String, String>{
+  "Fuel Type": "Hybrid",
+  "Engine": "2487 cc",
+  "Power and Torque": "190 bhp & 242 Nm",
+  "DriveTrain": "4WD / AWD",
+};
+var sections = <Section>[
+  Section(
+    heading: "Overview",
+    desc:
+        "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
+  ),
+  Section(
+    heading: "Overview",
+    desc:
+        "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
+  ),
+  Section(
+    heading: "Specifications",
+    desc:
+        "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
+    imgurl:
+        "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+  ),
+  Section(
+    heading: "Specifications",
+    desc:
+        "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
+    imgurl:
+        "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+  ),
+];
+
 class VehicleDetailsScreen extends StatefulWidget {
   final VehicleShortSummaries shortSummaries;
   const VehicleDetailsScreen({
@@ -54,76 +87,139 @@ class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
       ),
       body: ListView(
         children: [
-          if (widget.shortSummaries.image != null)
-            ...List.generate(
-              widget.shortSummaries.image!.length,
-              (index) {
-                if (index == 0) {
-                  return Image.network(
-                    widget.shortSummaries.image![index],
-                  );
-                }
-                return Image.network(
-                  widget.shortSummaries.image![index],
-                );
-              },
-            ),
-          ListTile(
-            title: Text(
-              widget.shortSummaries.name ?? "",
-              style: GoogleFonts.sen(),
-            ),
-            subtitle: Text(
-              widget.shortSummaries.fuelType ?? "",
-              style: GoogleFonts.sen(),
-            ),
-          ),
-          ListTile(
-            title: Text(
-              "",
-              style: GoogleFonts.sen(),
-            ),
-            subtitle: Text(
-              "",
-              style: GoogleFonts.sen(),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (widget.shortSummaries.image != null)
+                  ...List.generate(
+                    widget.shortSummaries.image!.length,
+                    (index) {
+                      if (index == 0) {
+                        return Image.network(
+                          widget.shortSummaries.image![index],
+                        );
+                      }
+                      return Image.network(
+                        widget.shortSummaries.image![index],
+                      );
+                    },
+                  ),
+                const SizedBox(height: 8),
+                Text(
+                  widget.shortSummaries.name ?? "",
+                  style: GoogleFonts.sen(),
+                ),
+                Text(
+                  widget.shortSummaries.fuelType ?? "",
+                  style: GoogleFonts.sen(),
+                ),
+              ],
             ),
           ),
           Container(
             padding: const EdgeInsets.all(10),
             child: Table(
-              border: TableBorder.all(),
+              border: TableBorder.all(
+                color: Colors.grey,
+              ),
               defaultVerticalAlignment: TableCellVerticalAlignment.middle,
               columnWidths: const {
                 0: FlexColumnWidth(1),
                 1: FlexColumnWidth(1),
               },
               children: [
-                ...List.generate(
-                  4,
-                  (rows) => TableRow(
-                    children: [
-                      ...List.generate(
-                        2,
-                        (index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Column ${index + 1}",
-                            style: GoogleFonts.sen(
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+                ...specification.keys
+                    .map(
+                      (e) => TableRow(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(5),
                         ),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              e,
+                              style: GoogleFonts.sen(
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              specification[e] ?? "",
+                              style: GoogleFonts.sen(
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                        ],
                       ),
-                    ],
+                    )
+                    .toList(),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ...List.generate(
+                  sections.length,
+                  (index) => SectionCard(
+                    section: sections[index],
                   ),
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 32),
+          )
         ],
       ),
+    );
+  }
+}
+
+class SectionCard extends StatelessWidget {
+  final Section section;
+  const SectionCard({super.key, required this.section});
+
+  @override
+  Widget build(BuildContext context) {
+    var heading = section.heading;
+    var desc = section.desc;
+    var imgurl = section.imgurl;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (heading != null)
+          Text(
+            heading,
+            style: GoogleFonts.sen(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+        const SizedBox(height: 8),
+        if (desc != null)
+          Text(
+            desc,
+            style: GoogleFonts.sen(
+              fontSize: 16,
+              color: Colors.grey.shade700,
+            ),
+          ),
+        if (imgurl != null)
+          Center(
+            child: Image.network(imgurl),
+          ),
+        const SizedBox(height: 16),
+      ],
     );
   }
 }

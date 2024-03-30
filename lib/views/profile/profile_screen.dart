@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../models/menu_item.dart';
-import '../utills/styles.dart';
+import '../../models/menu_item.dart';
+import '../../utills/styles.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -170,6 +170,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             profileItems.length,
             (index) => ListTile(
               onTap: () {
+                if (profileItems[index].type == "licenses") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LicensePage(),
+                    ),
+                  );
+                  return;
+                }
                 SnackbarUtills.showSnackbar(
                     context: context, message: "Comming soon.");
               },
