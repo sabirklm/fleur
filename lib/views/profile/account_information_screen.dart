@@ -3,6 +3,8 @@ import 'package:fleur/views/profile/widgets/profile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../utills/sanckbar.dart';
+
 class AccountInformationScreen extends StatelessWidget {
   const AccountInformationScreen({super.key});
 
@@ -44,7 +46,8 @@ class AccountInformationScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: MaterialButton(
               onPressed: () {
-                //TODO:
+                SnackbarUtills.showSnackbar(
+                    context: context, message: "Comming soon.");
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
