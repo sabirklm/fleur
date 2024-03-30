@@ -14,24 +14,14 @@ class MenuItem {
 
 List<MenuItem> profileItems = [
   MenuItem(
-    name: "Settings",
-    iconData: Icons.settings,
-    type: "settings",
+    name: "Account Information",
+    iconData: Icons.account_circle,
+    type: "account_info",
   ),
   MenuItem(
     name: "My Car",
     iconData: Icons.directions_car,
     type: "my_car",
-  ),
-  MenuItem(
-    name: "Privacy Policy",
-    iconData: Icons.privacy_tip,
-    type: "privacy_policy",
-  ),
-  MenuItem(
-    name: "Terms of Service",
-    iconData: Icons.description,
-    type: "terms_of_service",
   ),
   MenuItem(
     name: "Help & Support",
@@ -44,14 +34,14 @@ List<MenuItem> profileItems = [
     type: "notifications",
   ),
   MenuItem(
-    name: "Account Information",
-    iconData: Icons.account_circle,
-    type: "account_info",
-  ),
-  MenuItem(
     name: "Subscription",
     iconData: Icons.subscriptions,
     type: "subscription",
+  ),
+  MenuItem(
+    name: "Settings",
+    iconData: Icons.settings,
+    type: "settings",
   ),
   MenuItem(
     name: "Feedback",
@@ -59,10 +49,21 @@ List<MenuItem> profileItems = [
     type: "feedback",
   ),
   MenuItem(
+    name: "Privacy Policy",
+    iconData: Icons.privacy_tip,
+    type: "privacy_policy",
+  ),
+  MenuItem(
+    name: "Terms of Service",
+    iconData: Icons.description,
+    type: "terms_of_service",
+  ),
+  MenuItem(
     name: "About Us",
     iconData: Icons.info,
     type: "about_us",
-  ),MenuItem(
+  ),
+  MenuItem(
     name: "Licenses",
     iconData: Icons.pages,
     type: "licenses",
