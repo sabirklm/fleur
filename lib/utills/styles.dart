@@ -4,7 +4,7 @@ List<BoxShadow>? boxShadow = [
   BoxShadow(
     color: Colors.black.withOpacity(0.2),
     blurRadius: 10,
-    offset: const Offset(0, 5),
+    offset: const Offset(0, 10),
   ),
 ];
 

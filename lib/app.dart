@@ -5,6 +5,7 @@ import 'package:fleur/bloc/register_bloc.dart';
 import 'package:fleur/bloc/remember_me_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: GoogleFonts.sen().fontFamily,
         ),
+        // routerConfig: routes,
         home: const InitialView(),
         routes: const {
           // '/car-brand': (context) => const CarBrandScreen(),
@@ -69,10 +71,10 @@ class MyApp extends StatelessWidget {
 _appInfo() async {
   try {
     var packageInfo = await PackageInfo.fromPlatform();
-    String appName = packageInfo.appName;
-    String packageName = packageInfo.packageName;
-    String version = packageInfo.version;
-    String buildNumber = packageInfo.buildNumber;
+    var appName = packageInfo.appName;
+    var packageName = packageInfo.packageName;
+    var version = packageInfo.version;
+    var buildNumber = packageInfo.buildNumber;
     var logger = Logger();
     logger.d(appName);
     logger.d(packageName);
@@ -80,3 +82,31 @@ _appInfo() async {
     logger.d(buildNumber);
   } catch (_) {}
 }
+
+var routes = GoRouter(
+  initialLocation: "/",
+  routes: [
+    GoRoute(
+      path: "/auth",
+      builder: (context, state) => const AuthScreen(),
+    ),
+    GoRoute(
+      path: "/",
+      builder: (context, state) => const InitialView(),
+    ),
+    GoRoute(
+      path: "/brand",
+      name: "brand",
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              "${state.extra}",
+              style: const TextStyle(fontSize: 20, color: Colors.black),
+            ),
+          ),
+        );
+      },
+    ),
+  ],
+);

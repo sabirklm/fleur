@@ -1,5 +1,4 @@
 import 'package:fleur/utills/styles.dart';
-import 'package:fleur/views/widgets/short_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,7 +9,7 @@ class FeedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    // var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: ListView(
         children: [
