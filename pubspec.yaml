@@ -1,7 +1,7 @@
 name: fleur
 description: "A new journey."
 publish_to: 'none'
-version: 1.0.0+9
+version: 1.0.0+10
 
 environment:
   sdk: '>=3.2.6 <4.0.0'
@@ -31,6 +31,7 @@ dependencies:
     sdk: flutter
   google_sign_in: ^6.2.1
   video_player: ^2.8.3
+  firebase_crashlytics: ^3.4.18
   # equatable: ^2.0.5
   # cloud_firestore: ^4.15.4
   # firebase_core: ^2.25.4

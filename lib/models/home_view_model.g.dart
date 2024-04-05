@@ -14,10 +14,11 @@ HomeViewModel _$HomeViewModelFromJson(Map<String, dynamic> json) =>
           ?.map(
               (e) => VehicleShortSummaries.fromJson(e as Map<String, dynamic>))
           .toList(),
-    );
+    )..id = json['id'] as String?;
 
 Map<String, dynamic> _$HomeViewModelToJson(HomeViewModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'viewType': instance.viewType,
       'title': instance.title,
       'vehicles': instance.vehicles?.map((e) => e.toJson()).toList(),

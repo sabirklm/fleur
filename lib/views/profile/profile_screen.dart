@@ -1,0 +1,144 @@
+import 'package:fleur/bloc/user_bloc.dart';
+import 'package:fleur/utills/sanckbar.dart';
+import 'package:fleur/views/profile/account_information_screen.dart';
+import 'package:fleur/views/profile/my_vehicle_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../../models/menu_item.dart';
+import '../../utills/styles.dart';
+import 'widgets/profile_card.dart';
+
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  // final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // var width = MediaQuery.of(context).size.width;
+    // var height = MediaQuery.of(context).size.height;
+    return Scaffold(
+      body: ListView(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 16, right: 16),
+            child: ProfileCard(),
+          ),
+          ...List.generate(
+            profileItems.length,
+            (index) => ListTile(
+              onTap: () {
+                if (profileItems[index].type == "licenses") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LicensePage(),
+                    ),
+                  );
+                  return;
+                }
+                if (profileItems[index].type == "account_info") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AccountInformationScreen(),
+                    ),
+                  );
+                  return;
+                }
+                if (profileItems[index].type == "my_car") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyVehicleScreen(),
+                    ),
+                  );
+                  return;
+                }
+                SnackbarUtills.showSnackbar(
+                    context: context, message: "Comming soon.");
+              },
+              leading: Icon(profileItems[index].iconData ?? Icons.error),
+              title: Text(
+                profileItems[index].name ?? "",
+                style: GoogleFonts.sen(
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ),
+          Column(
+            children: [
+              MaterialButton(
+                onPressed: () {
+                  //TODO:
+                },
+                child: Text(
+                  "Log Out",
+                  style: GoogleFonts.sen(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16)
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileLoadingExperimentalShimmer extends StatelessWidget {
+  const ProfileLoadingExperimentalShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Row(
+        children: [
+          buildCircularShimmer(),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(width: 16),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: buildSquareShimmer(
+                    width: 100,
+                    height: 20,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: buildSquareShimmer(
+                    width: 200,
+                    height: 20,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

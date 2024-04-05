@@ -17,6 +17,14 @@ Vehicle _$VehicleFromJson(Map<String, dynamic> json) => Vehicle(
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
       desc: json['desc'] as String?,
+      specification: (json['specification'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, e as String),
+          ) ??
+          const {},
+      sections: (json['sections'] as List<dynamic>?)
+              ?.map((e) => Section.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$VehicleToJson(Vehicle instance) => <String, dynamic>{
@@ -28,7 +36,21 @@ Map<String, dynamic> _$VehicleToJson(Vehicle instance) => <String, dynamic>{
       'image': instance.image,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
+      'specification': instance.specification,
+      'sections': instance.sections,
       'desc': instance.desc,
+    };
+
+Section _$SectionFromJson(Map<String, dynamic> json) => Section(
+      heading: json['heading'] as String?,
+      desc: json['desc'] as String?,
+      imgurl: json['imgurl'] as String?,
+    );
+
+Map<String, dynamic> _$SectionToJson(Section instance) => <String, dynamic>{
+      'heading': instance.heading,
+      'desc': instance.desc,
+      'imgurl': instance.imgurl,
     };
 
 VehicleShortSummaries _$VehicleShortSummariesFromJson(

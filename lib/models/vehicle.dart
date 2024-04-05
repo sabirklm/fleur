@@ -19,6 +19,7 @@ class Vehicle {
   String? createdAt;
   String? updatedAt;
   Map<String, String> specification;
+  List<Section>? sections;
 
   String? desc;
 
@@ -33,12 +34,30 @@ class Vehicle {
     this.updatedAt,
     this.desc,
     this.specification = const {},
+    this.sections = const [],
   });
 
   factory Vehicle.fromJson(Map<String, dynamic> json) =>
       _$VehicleFromJson(json);
 
   Map<String, dynamic> toJson() => _$VehicleToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Section {
+  final String? heading;
+  final String? desc;
+  final String? imgurl;
+
+  Section({
+    this.heading,
+    this.desc,
+    this.imgurl,
+  });
+  factory Section.fromJson(Map<String, dynamic> json) =>
+      _$SectionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SectionToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
