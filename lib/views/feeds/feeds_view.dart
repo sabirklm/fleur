@@ -1,4 +1,5 @@
 import 'package:fleur/utills/styles.dart';
+import 'package:fleur/views/feeds/widgets/feed_stack_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,67 +23,14 @@ class FeedView extends StatelessWidget {
               children: [
                 ...List.generate(
                   3,
-                  (index) => ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Container(
-                      margin: const EdgeInsets.only(
-                        left: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: boxShadow,
-                      ),
-                      height: 320,
-                      width: 260,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.asset(
-                              "assets/images/electric.png",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.5),
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(16),
-                                  bottomRight: Radius.circular(16),
-                                ),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    ...List.generate(
-                                      3,
-                                      (index) =>
-                                          Colors.black.withOpacity(index / 3),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              child: Text(
-                                "Electric vehicles are future? Know more on elecric vehicles here",
-                                style: GoogleFonts.sen(
-                                  fontSize: 22,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  (index) => const StackFeedCardType1(),
                 ),
               ],
             ),
+          ),
+          ...List.generate(
+            3,
+            (index) => const FeedCardType2(),
           ),
           const SizedBox(height: 16),
           Container(
