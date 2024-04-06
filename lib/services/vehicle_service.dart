@@ -19,6 +19,19 @@ class VehicleService {
     }
   }
 
+    Future<Vehicle?> updateVehicle(Vehicle vehicle) async {
+    try {
+      await _vehicleRef.
+      doc(vehicle.id).set(vehicle.toJson());
+      // vehicle.id = docRef.id;
+      print("Vehicle added successfully with id: ${vehicle.id}");
+      return vehicle;
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
+  }
+
   Future<Vehicle?> getVehicle(String id) async {
     try {
       var docRef = _vehicleRef.doc(id);

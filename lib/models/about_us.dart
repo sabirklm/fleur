@@ -47,7 +47,7 @@ class PrivacyPolicy {
 }
 
 var mockPrivacyPolicy = PrivacyPolicy(
-  companyName: "Fleeur",
+  companyName: "Fleur",
   privacyDescription:
       "At Fleeur, we are committed to protecting the privacy and security of our users. This Privacy Policy outlines how we collect, use, protect, and retain your personal information.",
   informationCollection:
@@ -69,7 +69,7 @@ var mockPrivacyPolicy = PrivacyPolicy(
 );
 
 var mockAboutUs = AboutUs(
-  companyName: "Fleeur",
+  companyName: "Fleur",
   companyDescription:
       "Fleeur is your one-stop destination for exploring and discovering a wide range of cars and bikes. Whether you're a car enthusiast or a bike lover, we have something for everyone. With our user-friendly interface and extensive collection of vehicles, finding your dream ride has never been easier.",
   missionStatement:
