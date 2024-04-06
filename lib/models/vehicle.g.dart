@@ -37,7 +37,7 @@ Map<String, dynamic> _$VehicleToJson(Vehicle instance) => <String, dynamic>{
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'specification': instance.specification,
-      'sections': instance.sections,
+      'sections': instance.sections?.map((e) => e.toJson()).toList(),
       'desc': instance.desc,
     };
 

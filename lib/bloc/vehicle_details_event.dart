@@ -12,3 +12,11 @@ class GoToVehicleDetails extends VehicleDetailsEvent {
     required this.context,
   });
 }
+
+class LoadVehicleDetails extends VehicleDetailsEvent {
+  final String id;
+
+  LoadVehicleDetails({
+    required this.id,
+  });
+}

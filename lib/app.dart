@@ -3,6 +3,7 @@ import 'package:fleur/bloc/google_auth_bloc.dart';
 import 'package:fleur/bloc/home_bloc.dart';
 import 'package:fleur/bloc/register_bloc.dart';
 import 'package:fleur/bloc/remember_me_bloc.dart';
+import 'package:fleur/bloc/vehicle_details_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -46,6 +47,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => GoogleAuthBloc(),
         ),
+        //VehicleDetailsBloc
+        // BlocProvider(
+        //   create: (_) => VehicleDetailsBloc(),
+        // ),
       ],
       child: MaterialApp(
         title: 'Fleur',
