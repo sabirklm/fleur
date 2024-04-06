@@ -72,20 +72,20 @@ class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
 
   @override
   void initState() {
-    VehicleService().updateVehicle(
-      Vehicle(
-        id: widget.shortSummaries.vehiclleId,
-        name: widget.shortSummaries.vehiclleId,
-        sections: sections,
-        specification: specification,
-        image: widget.shortSummaries.image,
-        desc: widget.shortSummaries.vehiclleId,
-        createdAt: DateTime.now().toString(),
-        updatedAt: DateTime.now().toString(),
-        fuelType: "Petrol",
-        model: "2023",
-      ),
-    );
+    // VehicleService().updateVehicle(
+    //   Vehicle(
+    //     id: widget.shortSummaries.vehiclleId,
+    //     name: widget.shortSummaries.vehiclleId,
+    //     sections: sections,
+    //     specification: specification,
+    //     image: widget.shortSummaries.image,
+    //     desc: widget.shortSummaries.vehiclleId,
+    //     createdAt: DateTime.now().toString(),
+    //     updatedAt: DateTime.now().toString(),
+    //     fuelType: "Petrol",
+    //     model: "2023",
+    //   ),
+    // );
 
     _vehicleDetailsBloc
         .add(LoadVehicleDetails(id: widget.shortSummaries.vehiclleId ?? ""));
