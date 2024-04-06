@@ -5,6 +5,13 @@ class TermsOfServiceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Terms of Service'),
+      ),
+      body: const Center(
+        child: Text('Terms of Service'),
+      ),
+    );
   }
 }

@@ -5,6 +5,14 @@ class SubscriptionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Subscription View'),
+      ),
+      body: const Center(
+        child: Text('Subscription View'),
+      ),
+    );
   }
 }
+   

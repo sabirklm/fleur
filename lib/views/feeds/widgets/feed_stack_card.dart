@@ -22,9 +22,7 @@ class StackFeedCardType1 extends StatelessWidget {
           );
         },
         child: Container(
-          margin: const EdgeInsets.only(
-            left: 8,
-          ),
+          margin: const EdgeInsets.only(left: 8, right: 8),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             // boxShadow: [
