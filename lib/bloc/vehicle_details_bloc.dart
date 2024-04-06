@@ -15,8 +15,9 @@ class VehicleDetailsBloc
     on<LoadVehicleDetails>(
       (event, emit) async {
         emit(VehicleDetailsLoading());
-        await Future.delayed(Duration(seconds: 3)); // Simulate network delay
+        await Future.delayed(const Duration(seconds: 3)); // Simulate network delay
         try {
+          // print("ov6zsONhm5PVasHFN0Ju ${event.id}");
           var vehicle =
               await VehicleService().getVehicle("ov6zsONhm5PVasHFN0Ju");
           if (vehicle != null) {

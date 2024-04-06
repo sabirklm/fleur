@@ -19,16 +19,15 @@ class VehicleService {
     }
   }
 
-    Future<Vehicle?> updateVehicle(Vehicle vehicle) async {
+  Future<Vehicle?> updateVehicle(Vehicle vehicle) async {
     try {
-      await _vehicleRef.
-      doc(vehicle.id).set(vehicle.toJson());
+      await _vehicleRef.doc(vehicle.id).set(vehicle.toJson());
       // vehicle.id = docRef.id;
       print("Vehicle added successfully with id: ${vehicle.id}");
       return vehicle;
-    } catch (e) {
+    } on FirebaseException catch (e) {
       print(e);
-      return Future.error(e);
+      return Future.error(e.message ?? "Something went wrong");
     }
   }
 
@@ -51,9 +50,9 @@ class VehicleService {
       } else {
         return null;
       }
-    } catch (e) {
+    } on FirebaseException catch (e) {
       print(e);
-      return Future.error(e);
+      return Future.error(e.message ?? "Something went wrong");
     }
   }
 }
