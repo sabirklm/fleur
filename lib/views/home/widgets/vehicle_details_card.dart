@@ -63,7 +63,7 @@ class VehicleDetailsCard extends StatelessWidget {
               1: FlexColumnWidth(1),
             },
             children: [
-              ...specification.keys
+              ...vehicle.specification.keys
                   .map(
                     (e) => TableRow(
                       decoration: BoxDecoration(
@@ -84,7 +84,7 @@ class VehicleDetailsCard extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            specification[e] ?? "",
+                            vehicle.specification[e] ?? "",
                             style: GoogleFonts.sen(
                               fontWeight: FontWeight.bold,
                             ),

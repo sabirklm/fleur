@@ -1,8 +1,10 @@
+import 'package:fleur/models/media.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StackFeedCardType1 extends StatelessWidget {
-  const StackFeedCardType1({super.key});
+  final MediaMetaData? mediaMetaData;
+  const StackFeedCardType1({super.key, this.mediaMetaData});
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +40,16 @@ class StackFeedCardType1 extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.network(
-                  "https://scoopempire.com/wp-content/uploads/2021/01/Copy-of-Scoop-Featured-Image-1-12.png",
-                  fit: BoxFit.cover,
+              if (mediaMetaData?.imgUrls?.first != null &&
+                  mediaMetaData!.imgUrls!.isNotEmpty)
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.network(
+                    mediaMetaData?.imgUrls?.first ??
+                        "https://scoopempire.com/wp-content/uploads/2021/01/Copy-of-Scoop-Featured-Image-1-12.png",
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Container(
@@ -67,7 +72,8 @@ class StackFeedCardType1 extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    "Electric vehicles are future? Know more on elecric vehicles here",
+                    mediaMetaData?.desc ??
+                        "Electric vehicles are future? Know more on elecric vehicles here",
                     style: GoogleFonts.sen(
                       fontSize: 22,
                       color: Colors.white,
