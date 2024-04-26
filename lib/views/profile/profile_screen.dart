@@ -1,9 +1,15 @@
-import 'package:fleur/bloc/user_bloc.dart';
 import 'package:fleur/utills/sanckbar.dart';
+import 'package:fleur/views/profile/about_us_view.dart';
 import 'package:fleur/views/profile/account_information_screen.dart';
+import 'package:fleur/views/profile/feedback_view.dart';
+import 'package:fleur/views/profile/help_and_support_view.dart';
 import 'package:fleur/views/profile/my_vehicle_screen.dart';
+import 'package:fleur/views/profile/notification_view.dart';
+import 'package:fleur/views/profile/privacy_policy_view.dart';
+import 'package:fleur/views/profile/setting_view.dart';
+import 'package:fleur/views/profile/subscription_view.dart';
+import 'package:fleur/views/profile/terms_of_service_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -41,7 +47,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             profileItems.length,
             (index) => ListTile(
               onTap: () {
-                if (profileItems[index].type == "licenses") {
+                var itemType = profileItems[index].type;
+                if (itemType == "licenses") {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -50,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   );
                   return;
                 }
-                if (profileItems[index].type == "account_info") {
+                if (itemType == "account_info") {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -59,17 +66,82 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   );
                   return;
                 }
-                if (profileItems[index].type == "my_car") {
+                if (itemType == "my_car") {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const MyVehicleScreen(),
                     ),
                   );
-                  return;
                 }
-                SnackbarUtills.showSnackbar(
-                    context: context, message: "Comming soon.");
+                if (itemType == "help_support") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HelpAndSupportView(),
+                    ),
+                  );
+                }
+                if (itemType == "notifications") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const NotificationView(),
+                    ),
+                  );
+                }
+                if (itemType == "subscription") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SubscriptionView(),
+                    ),
+                  );
+                }
+                //
+                if (itemType == "settings") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SettingView(),
+                    ),
+                  );
+                }
+                //feedback
+                if (itemType == "feedback") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const FeedbackView(),
+                    ),
+                  );
+                }
+                if (itemType == "privacy_policy") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PrivacyPolicyView(),
+                    ),
+                  );
+                }
+                //terms_of_service
+                if (itemType == "terms_of_service") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TermsOfServiceView(),
+                    ),
+                  );
+                }
+                //about_us
+                if (itemType == "about_us") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AboutUsView(),
+                    ),
+                  );
+                }
               },
               leading: Icon(profileItems[index].iconData ?? Icons.error),
               title: Text(

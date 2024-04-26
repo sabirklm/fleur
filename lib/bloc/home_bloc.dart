@@ -16,7 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     var homePage = <String, List<VehicleShortSummaries>>{};
 
     var data = await HomeViewService().getHomeView();
-
+    // var data = <HomeViewModel>[];
     for (var element in data) {
       var title = element.title;
       if (title != null) {

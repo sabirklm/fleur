@@ -1,39 +1,46 @@
 import 'package:fleur/models/vehicle.dart';
+import 'package:fleur/services/vehicle_service.dart';
+import 'package:fleur/utills/styles.dart';
+import 'package:fleur/views/home/widgets/vehicle_details_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
 
-var specification = <String, String>{
-  "Fuel Type": "Hybrid",
-  "Engine": "2487 cc",
-  "Power and Torque": "190 bhp & 242 Nm",
-  "DriveTrain": "4WD / AWD",
-};
-var sections = <Section>[
-  Section(
-    heading: "Overview",
-    desc:
-        "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
-  ),
-  Section(
-    heading: "Overview",
-    desc:
-        "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
-  ),
-  Section(
-    heading: "Specifications",
-    desc:
-        "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
-    imgurl:
-        "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-  ),
-  Section(
-    heading: "Specifications",
-    desc:
-        "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
-    imgurl:
-        "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-  ),
-];
+import '../../bloc/vehicle_details_bloc.dart';
+
+// var specification = <String, String>{
+//   "Fuel Type": "Hybrid",
+//   "Engine": "2487 cc",
+//   "Power and Torque": "190 bhp & 242 Nm",
+//   "DriveTrain": "4WD / AWD",
+// };
+// var sections = <Section>[
+//   Section(
+//     heading: "Overview",
+//     desc:
+//         "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
+//   ),
+//   Section(
+//     heading: "Overview",
+//     desc:
+//         "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
+//   ),
+//   Section(
+//     heading: "Specifications",
+//     desc:
+//         "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
+//     imgurl:
+//         "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+//   ),
+//   Section(
+//     heading: "Specifications",
+//     desc:
+//         "Lorepsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Nulla at volutpat diam. Cras feugiat consequat urna, nec luctus nisl tincidunt in. Cras pharetra convallis posuere. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam. Nulla facilisi. Donec eget odio quam.",
+//     imgurl:
+//         "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+//   ),
+// ];
 
 class VehicleDetailsScreen extends StatefulWidget {
   final VehicleShortSummaries shortSummaries;
@@ -47,6 +54,8 @@ class VehicleDetailsScreen extends StatefulWidget {
 }
 
 class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
+  final _vehicleDetailsBloc = VehicleDetailsBloc();
+
   final List<String> tabs = [
     "Tab 1",
     "Tab 2",
@@ -63,11 +72,29 @@ class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
 
   @override
   void initState() {
+    // VehicleService().updateVehicle(
+    //   Vehicle(
+    //     id: widget.shortSummaries.vehiclleId,
+    //     name: widget.shortSummaries.vehiclleId,
+    //     sections: sections,
+    //     specification: specification,
+    //     image: widget.shortSummaries.image,
+    //     desc: widget.shortSummaries.vehiclleId,
+    //     createdAt: DateTime.now().toString(),
+    //     updatedAt: DateTime.now().toString(),
+    //     fuelType: "Petrol",
+    //     model: "2023",
+    //   ),
+    // );
+
+    _vehicleDetailsBloc
+        .add(LoadVehicleDetails(id: widget.shortSummaries.vehiclleId ?? ""));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -87,98 +114,46 @@ class _VehicleDetailsScreenState extends State<VehicleDetailsScreen> {
       ),
       body: ListView(
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (widget.shortSummaries.image != null)
-                  ...List.generate(
-                    widget.shortSummaries.image!.length,
-                    (index) {
-                      if (index == 0) {
-                        return Image.network(
-                          widget.shortSummaries.image![index],
-                        );
-                      }
-                      return Image.network(
-                        widget.shortSummaries.image![index],
-                      );
-                    },
-                  ),
-                const SizedBox(height: 8),
-                Text(
-                  widget.shortSummaries.name ?? "",
-                  style: GoogleFonts.sen(),
-                ),
-                Text(
-                  widget.shortSummaries.fuelType ?? "",
-                  style: GoogleFonts.sen(),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(8),
-            child: Table(
-              border: TableBorder.all(
-                color: Colors.grey,
-              ),
-              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              columnWidths: const {
-                0: FlexColumnWidth(1),
-                1: FlexColumnWidth(1),
-              },
-              children: [
-                ...specification.keys
-                    .map(
-                      (e) => TableRow(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              e,
-                              style: GoogleFonts.sen(
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
+          BlocBuilder<VehicleDetailsBloc, VehicleDetailsState>(
+            bloc: _vehicleDetailsBloc,
+            builder: (context, state) {
+              if (state is VehicleDetailsLoading) {
+                return Shimmer.fromColors(
+                  baseColor: Colors.grey.shade200,
+                  highlightColor: Colors.grey.shade500,
+                  child: Column(
+                    children: [
+                      ...List.generate(
+                        10,
+                        (index) => Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: buildSquareShimmer(
+                            color: Colors.grey,
+                            width: width,
+                            height: 120,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              specification[e] ?? "",
-                              style: GoogleFonts.sen(
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
+                        ),
                       ),
-                    )
-                    .toList(),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ...List.generate(
-                  sections.length,
-                  (index) => SectionCard(
-                    section: sections[index],
+                    ],
                   ),
+                );
+              }
+              if (state is VehicleDetailsError) {
+                return Text(state.message);
+              }
+
+              if (state is VehicleDetailsLoaded) {
+                return VehicleDetailsCard(vehicle: state.vehicle);
+              }
+              return Text(
+                'Something went wrong',
+                style: GoogleFonts.sen(
+                  fontSize: 22,
+                  color: Colors.grey.shade700,
                 ),
-              ],
-            ),
-          )
+              );
+            },
+          ),
         ],
       ),
     );

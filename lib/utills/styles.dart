@@ -4,7 +4,7 @@ List<BoxShadow>? boxShadow = [
   BoxShadow(
     color: Colors.black.withOpacity(0.2),
     blurRadius: 10,
-    offset: const Offset(0, 5),
+    offset: const Offset(0, 10),
   ),
 ];
 
@@ -19,10 +19,10 @@ Widget buildCircularShimmer() {
   );
 }
 
-Widget buildSquareShimmer({double? width, double? height}) {
+Widget buildSquareShimmer({double? width, double? height, Color? color = Colors.white}) {
   return Container(
     width: width ?? 100,
     height: height ?? 32,
-    color: Colors.white,
+    color:color,
   );
 }

@@ -1,5 +1,154 @@
 /* 
 
+ // TODO: get data from server.
+      var feeds = [
+        FeedViewModel(
+          type: "articleType1",
+          mediaMetadata: [
+            MediaMetaData(
+              desc: "This is a description.",
+              imgUrls: [
+                "https://scoopempire.com/wp-content/uploads/2021/01/Copy-of-Scoop-Featured-Image-1-12.png",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+              ],
+            ),
+            MediaMetaData(
+              desc: "This is a description.",
+              imgUrls: [
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+              ],
+            ),
+            MediaMetaData(
+              desc: "This is a description.",
+              imgUrls: [
+                "https://scoopempire.com/wp-content/uploads/2021/01/Copy-of-Scoop-Featured-Image-1-12.png",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+              ],
+            ),
+          ],
+        ),
+        FeedViewModel(
+          type: "articleType2",
+          mediaMetadata: [
+            MediaMetaData(
+              desc: "This is a description.",
+              imgUrls: [
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+              ],
+            )
+          ],
+        ),
+        FeedViewModel(
+          type: "reels",
+          mediaMetadata: [
+            MediaMetaData(
+              imgUrls: [
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+              ],
+            )
+          ],
+        ),
+        FeedViewModel(
+          type: "post",
+          media: Media(
+            type: "",
+            imgUrl: "http://picsum.photos/200/300",
+            title: "Chose a title.",
+            desc: "This is a description.",
+          ),
+        ),
+        FeedViewModel(
+          type: "post",
+          media: Media(
+            type: "",
+            imgUrl: "http://picsum.photos/200/300",
+            title: "Chose a title.",
+            desc: "This is a description.",
+          ),
+        ),
+        FeedViewModel(
+          type: "reels",
+          mediaMetadata: [
+            MediaMetaData(
+              imgUrls: [
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+              ],
+            )
+          ],
+        ),
+        FeedViewModel(
+          type: "reels",
+          mediaMetadata: [
+            MediaMetaData(
+              imgUrls: [
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+              ],
+            )
+          ],
+        ),
+        FeedViewModel(
+          type: "reels",
+          mediaMetadata: [
+            MediaMetaData(
+              imgUrls: [
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300",
+                "https://picsum.photos/200/300"
+              ],
+            )
+          ],
+        ),
+        FeedViewModel(
+          type: "post",
+          media: Media(
+            type: "",
+            imgUrl: "http://picsum.photos/200/300",
+            title: "Chose a title.",
+            desc: "This is a description.",
+          ),
+        ),
+        FeedViewModel(
+          type: "post",
+          media: Media(
+            type: "",
+            imgUrl: "http://picsum.photos/200/300",
+            title: "Chose a title.",
+            desc: "This is a description.",
+          ),
+        ),
+        FeedViewModel(
+          type: "post",
+          media: Media(
+            type: "",
+            imgUrl: "http://picsum.photos/200/300",
+            title: "Chose a title.",
+            desc: "This is a description.",
+          ),
+        ),
+        FeedViewModel(
+          type: "post",
+          media: Media(
+            type: "",
+            imgUrl: "http://picsum.photos/200/300",
+            title: "Chose a title.",
+            desc: "This is a description.",
+          ),
+        ),
+      ];
+    
+
 Price
 	Rs. 11.57 Lakh onwards
 Mileage

@@ -1,12 +1,27 @@
+import 'package:fleur/models/media.dart';
 import 'package:fleur/utills/styles.dart';
-import 'package:fleur/views/widgets/short_video_player.dart';
+import 'package:fleur/views/feeds/widgets/feed_stack_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../bloc/feed_bloc.dart';
 import '../shorts/shorts_list_screen.dart';
 
-class FeedView extends StatelessWidget {
+class FeedView extends StatefulWidget {
   const FeedView({super.key});
+
+  @override
+  State<FeedView> createState() => _FeedViewState();
+}
+
+class _FeedViewState extends State<FeedView> {
+  final feedBloc = FeedBloc();
+  @override
+  void initState() {
+    feedBloc.add(FeedGetEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,187 +30,182 @@ class FeedView extends StatelessWidget {
       body: ListView(
         children: [
           const SizedBox(height: 8),
-          SizedBox(
-            height: 320,
-            width: 120,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                ...List.generate(
-                  3,
-                  (index) => ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Container(
-                      margin: const EdgeInsets.only(
-                        left: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: boxShadow,
-                      ),
-                      height: 320,
-                      width: 260,
-                      child: Stack(
-                        fit: StackFit.expand,
+          BlocBuilder<FeedBloc, FeedState>(
+            bloc: feedBloc,
+            builder: (context, state) {
+              if (state is FeedLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (state is FeedLoaded) {
+                var data = state.feeds;
+                return Column(
+                  children: [
+                    ...List.generate(
+                      data.length,
+                      (feedIndex) => Column(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.asset(
-                              "assets/images/electric.png",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.5),
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(16),
-                                  bottomRight: Radius.circular(16),
-                                ),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    ...List.generate(
-                                      3,
-                                      (index) =>
-                                          Colors.black.withOpacity(index / 3),
+                          if (data[feedIndex].type == "articleType1")
+                            SizedBox(
+                              height: 320,
+                              width: width,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  ...List.generate(
+                                    data[feedIndex].mediaMetadata?.length ?? 0,
+                                    (index) => StackFeedCardType1(
+                                      mediaMetaData:
+                                          data[feedIndex].mediaMetadata?[index],
                                     ),
-                                  ],
-                                ),
-                              ),
-                              child: Text(
-                                "Electric vehicles are future? Know more on elecric vehicles here",
-                                style: GoogleFonts.sen(
-                                  fontSize: 22,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
-                          )
+                          if (data[feedIndex].type == "articleType2")
+                            ...List.generate(
+                              3,
+                              (index) => const FeedCardType2(),
+                            ),
+                          if (data[feedIndex].type == "reels")
+                            SizedBox(
+                              height: 220,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  ...List.generate(
+                                    3,
+                                    (index) => const ShortsVideopreviewCard(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          if (data[feedIndex].type == "post")
+                           FeedCard(
+                                media: data[feedIndex].media??Media(),
+                              ),
                         ],
                       ),
                     ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.all(8),
-            margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.0),
-              boxShadow: boxShadow,
-            ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "Create an annomous post",
-                      style: GoogleFonts.sen(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.post_add,
-                        color: Colors.purple,
-                        size: 30,
-                      ),
-                    ),
                   ],
-                ),
-                const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.image,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.video_call,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.edit,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+                );
+              }
+              return Container();
+            },
           ),
-          ...List.generate(
-            3,
-            (index) => const FeedCard(),
-          ),
-          SizedBox(
-            height: 220,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                ...List.generate(
-                  3,
-                  (index) => const ShortsVideopreviewCard(),
-                ),
-              ],
-            ),
-          ),
-          ...List.generate(
-            3,
-            (index) => const FeedCard(),
-          ),
-          SizedBox(
-            height: 220,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                ...List.generate(
-                  3,
-                  (index) => const ShortsVideopreviewCard(),
-                ),
-              ],
-            ),
-          ),
-          ...List.generate(
-            3,
-            (index) => const FeedCard(),
-          ),
-          SizedBox(
-            height: 220,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                ...List.generate(
-                  3,
-                  (index) => const ShortsVideopreviewCard(),
-                ),
-              ],
-            ),
-          ),
-          ...List.generate(
-            3,
-            (index) => const FeedCard(),
-          ),
+
+          // const SizedBox(height: 16),
+          // Container(
+          //   padding: const EdgeInsets.all(8),
+          //   margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+          //   decoration: BoxDecoration(
+          //     color: Colors.white,
+          //     borderRadius: BorderRadius.circular(10.0),
+          //     boxShadow: boxShadow,
+          //   ),
+          //   child: Column(
+          //     children: [
+          //       Row(
+          //         children: [
+          //           Text(
+          //             "Create an annomous post",
+          //             style: GoogleFonts.sen(
+          //               fontSize: 16,
+          //               fontWeight: FontWeight.bold,
+          //               color: Colors.black,
+          //             ),
+          //           ),
+          //           const Spacer(),
+          //           IconButton(
+          //             onPressed: () {},
+          //             icon: const Icon(
+          //               Icons.post_add,
+          //               color: Colors.purple,
+          //               size: 30,
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //       const Divider(),
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           IconButton(
+          //             onPressed: () {},
+          //             icon: const Icon(
+          //               Icons.image,
+          //             ),
+          //           ),
+          //           IconButton(
+          //             onPressed: () {},
+          //             icon: const Icon(
+          //               Icons.video_call,
+          //             ),
+          //           ),
+          //           IconButton(
+          //             onPressed: () {},
+          //             icon: const Icon(
+          //               Icons.edit,
+          //             ),
+          //           ),
+          //         ],
+          //       )
+          //     ],
+          //   ),
+          // ),
+          // ...List.generate(
+          //   3,
+          //   (index) => const FeedCard(),
+          // ),
+          // SizedBox(
+          //   height: 220,
+          //   child: ListView(
+          //     scrollDirection: Axis.horizontal,
+          //     children: [
+          //       ...List.generate(
+          //         3,
+          //         (index) => const ShortsVideopreviewCard(),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // ...List.generate(
+          //   3,
+          //   (index) => const FeedCard(),
+          // ),
+          // SizedBox(
+          //   height: 220,
+          //   child: ListView(
+          //     scrollDirection: Axis.horizontal,
+          //     children: [
+          //       ...List.generate(
+          //         3,
+          //         (index) => const ShortsVideopreviewCard(),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // ...List.generate(
+          //   3,
+          //   (index) => const FeedCard(),
+          // ),
+          // SizedBox(
+          //   height: 220,
+          //   child: ListView(
+          //     scrollDirection: Axis.horizontal,
+          //     children: [
+          //       ...List.generate(
+          //         3,
+          //         (index) => const ShortsVideopreviewCard(),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // ...List.generate(
+          //   3,
+          //   (index) => const FeedCard(),
+          // ),
         ],
       ),
     );
@@ -238,7 +248,8 @@ class ShortsVideopreviewCard extends StatelessWidget {
 }
 
 class FeedCard extends StatelessWidget {
-  const FeedCard({super.key});
+  final Media media;
+  const FeedCard({super.key, required this.media});
 
   @override
   Widget build(BuildContext context) {
@@ -368,7 +379,7 @@ class FeedCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              "Mahindra Thar 2022",
+             media.title?? "Mahindra Thar 2022",
               style: GoogleFonts.sen(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -400,7 +411,7 @@ class FeedCard extends StatelessWidget {
             height: height * 0.6,
             width: width,
             child: Image.network(
-              "https://w0.peakpx.com/wallpaper/49/418/HD-wallpaper-mahindra-thar-car-dark-clouds-background-black-car.jpg",
+             media.imgUrl?? "https://w0.peakpx.com/wallpaper/49/418/HD-wallpaper-mahindra-thar-car-dark-clouds-background-black-car.jpg",
               fit: BoxFit.cover,
             ),
           ),
